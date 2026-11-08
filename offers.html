@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>قازی بازاڕ | لیستی فەرمی نرخ و ئۆفەرەکان — Qazi Bazar</title>
+  <meta name="description" content="لیستی فەرمی نرخ و پاکێجەکانی ڕێکلام لە قازی بازاڕ (Qazi Bazar) - پۆستی ئاسایی، VIP و پاکێجی شاهانەی VVIP." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Vazirmatn & Noto Sans Arabic for Kurdish, Plus Jakarta Sans & Inter for Numbers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            kurdish: ['Vazirmatn', 'Noto Sans Arabic', 'sans-serif'],
+            num: ['Plus Jakarta Sans', 'Inter', 'Vazirmatn', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #050711;
+      --bg-secondary: #0b1026;
+      --text-primary: #f8fafc;
+      --text-secondary: rgba(226, 232, 240, 0.76);
+      --text-muted: rgba(148, 163, 184, 0.72);
+      --glass-surface: rgba(255, 255, 255, 0.055);
+      --glass-surface-hover: rgba(255, 255, 255, 0.09);
+      --glass-elevated: rgba(15, 20, 42, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.22);
+      --glass-border-strong: rgba(255, 255, 255, 0.38);
+      --glass-inner-glow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 1px 0 rgba(255, 255, 255, 0.06);
+      --glass-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.68), 0 0 1px 1px rgba(255, 255, 255, 0.08);
+      --gift-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(6, 182, 212, 0.14));
+      --gift-border: rgba(52, 211, 153, 0.4);
+      --vvip-surface: linear-gradient(135deg, rgba(245, 158, 11, 0.14) 0%, rgba(168, 85, 247, 0.14) 52%, rgba(6, 182, 212, 0.12) 100%);
+      --vvip-border: rgba(251, 191, 36, 0.48);
+    }
+
+    html.light {
+      --bg-primary: #eef2ff;
+      --bg-secondary: #f8fafc;
+      --text-primary: #0f172a;
+      --text-secondary: rgba(30, 41, 59, 0.8);
+      --text-muted: rgba(71, 85, 105, 0.75);
+      --glass-surface: rgba(255, 255, 255, 0.65);
+      --glass-surface-hover: rgba(255, 255, 255, 0.85);
+      --glass-elevated: rgba(255, 255, 255, 0.86);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --glass-border-strong: rgba(99, 102, 241, 0.45);
+      --glass-inner-glow: inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.98), inset 0 -1px 2px 0 rgba(148, 163, 184, 0.16);
+      --glass-shadow: 0 20px 50px -12px rgba(30, 41, 59, 0.11), 0 4px 20px -2px rgba(99, 102, 241, 0.07);
+      --gift-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+      --gift-border: rgba(16, 185, 129, 0.45);
+      --vvip-surface: linear-gradient(135deg, rgba(254, 243, 199, 0.78) 0%, rgba(243, 232, 255, 0.78) 52%, rgba(224, 242, 254, 0.78) 100%);
+      --vvip-border: rgba(217, 119, 6, 0.48);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      min-height: 100vh;
+      transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease;
+    }
+
+    /* Ambient iOS 26 Liquid Aurora Mesh Background */
+    .aurora-stage {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 0%, var(--bg-secondary), var(--bg-primary) 76%);
+    }
+
+    .aurora-orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(95px);
+      opacity: 0.56;
+      will-change: transform;
+      animation: floatOrb 22s infinite alternate ease-in-out;
+    }
+
+    html.light .aurora-orb {
+      opacity: 0.42;
+      filter: blur(105px);
+    }
+
+    .orb-1 {
+      width: 38rem;
+      height: 38rem;
+      top: -12%;
+      right: -8%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.65), rgba(168, 85, 247, 0.22) 70%);
+      animation-duration: 24s;
+    }
+
+    .orb-2 {
+      width: 34rem;
+      height: 34rem;
+      top: 30%;
+      left: -10%;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.55), rgba(59, 130, 246, 0.16) 70%);
+      animation-duration: 28s;
+      animation-delay: -7s;
+    }
+
+    .orb-3 {
+      width: 42rem;
+      height: 42rem;
+      bottom: -15%;
+      right: 16%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.42), rgba(236, 72, 153, 0.24) 65%, transparent 80%);
+      animation-duration: 26s;
+      animation-delay: -13s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-42px, 34px, 0) scale(1.08); }
+      100% { transform: translate3d(34px, -28px, 0) scale(0.95); }
+    }
+
+    /* Subtle spatial grid overlay */
+    .spatial-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
+    }
+
+    /* iOS 26 Liquid Glass Material */
+    .ios-glass {
+      background: var(--glass-surface);
+      backdrop-filter: blur(36px) saturate(190%);
+      -webkit-backdrop-filter: blur(36px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), var(--glass-inner-glow);
+    }
+
+    .ios-glass-elevated {
+      background: var(--glass-elevated);
+      backdrop-filter: blur(40px) saturate(205%);
+      -webkit-backdrop-filter: blur(40px) saturate(205%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), var(--glass-inner-glow);
+    }
+
+    /* Pricing Card with 1px Specular Rim & Interactive Cursor Reflection */
+    .liquid-card {
+      position: relative;
+      background: var(--glass-surface);
+      backdrop-filter: blur(36px) saturate(190%);
+      -webkit-backdrop-filter: blur(36px) saturate(190%);
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), var(--glass-inner-glow);
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.4s ease,
+                  background-color 0.4s ease,
+                  box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* 1px inner specular highlight rim */
+    .liquid-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 45%, rgba(255,255,255,0.03) 75%, rgba(255,255,255,0.24) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Interactive cursor-tracking specular glow */
+    .liquid-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+        rgba(255, 255, 255, 0.16),
+        transparent 55%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .liquid-card:hover::after {
+      opacity: 1;
+    }
+
+    .liquid-card:hover {
+      transform: translateY(-6px) scale(1.006);
+      background: var(--glass-surface-hover);
+      border-color: var(--glass-border-strong);
+      box-shadow: 0 32px 70px -12px rgba(0, 0, 0, 0.52),
+                  0 0 28px -4px rgba(99, 102, 241, 0.22),
+                  var(--glass-inner-glow);
+    }
+
+    /* Popular VIP Card Accent */
+    .card-popular {
+      background: linear-gradient(160deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.11) 50%, var(--glass-surface) 100%);
+      border-color: rgba(129, 140, 248, 0.45);
+    }
+
+    /* Flagship VVIP Royal Card Accent */
+    .card-vvip {
+      background: var(--vvip-surface);
+      border-color: var(--vvip-border);
+      box-shadow: 0 30px 80px -15px rgba(245, 158, 11, 0.22),
+                  0 0 40px -10px rgba(168, 85, 247, 0.25),
+                  var(--glass-inner-glow);
+    }
+
+    .card-vvip::before {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.78) 0%, rgba(168, 85, 247, 0.45) 50%, rgba(6, 182, 212, 0.52) 100%);
+    }
+
+    /* Gift Badge Styling */
+    .gift-pill {
+      background: var(--gift-bg);
+      border: 1px solid var(--gift-border);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.32);
+    }
+
+    @keyframes pulseGift {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(-6deg); }
+      75% { transform: scale(1.1) rotate(6deg); }
+    }
+
+    .gift-icon-anim {
+      animation: pulseGift 3.2s infinite ease-in-out;
+    }
+
+    /* Shimmering Gold Text */
+    .text-shimmer-gold {
+      background: linear-gradient(90deg, #fbbf24 0%, #fef08a 45%, #f59e0b 80%, #fbbf24 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerText 5s linear infinite;
+    }
+
+    html.light .text-shimmer-gold {
+      background: linear-gradient(90deg, #b45309 0%, #d97706 50%, #7e22ce 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes shimmerText {
+      to { background-position: 200% center; }
+    }
+
+    /* Filter Pill Active State */
+    .filter-pill {
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .filter-pill.active {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.88), rgba(139, 92, 246, 0.88));
+      color: #ffffff;
+      border-color: rgba(165, 180, 252, 0.6);
+      box-shadow: 0 8px 22px -4px rgba(99, 102, 241, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+      opacity: 1;
+    }
+
+    /* Theme Toggle Button */
+    .btn-glass {
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.38), 0 8px 20px -6px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-glass:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.2);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.55);
+    }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-indigo-500 selection:text-white pb-20">
+
+  <!-- Ambient iOS 26 Spatial Aurora Background -->
+  <div class="aurora-stage" aria-hidden="true">
+    <div class="aurora-orb orb-1"></div>
+    <div class="aurora-orb orb-2"></div>
+    <div class="aurora-orb orb-3"></div>
+  </div>
+  <div class="spatial-grid" aria-hidden="true"></div>
+
+  <!-- Floating Top iOS 26 Navigation Bar -->
+  <header class="sticky top-3 z-40 px-3 sm:px-6 max-w-7xl mx-auto">
+    <nav class="ios-glass rounded-full px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Brand Identity: Qazi Bazar (قازی بازاڕ) -->
+      <div class="flex items-center gap-3">
+        <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-amber-500 p-[1px] shadow-lg shadow-indigo-500/25">
+          <div class="w-full h-full rounded-[15px] bg-slate-950/85 backdrop-blur-xl flex items-center justify-center">
+            <i class="ph-fill ph-storefront text-2xl text-amber-400"></i>
+          </div>
+          <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-slate-950"></span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg sm:text-xl font-black tracking-tight">قازی بازاڕ</h1>
+            <span class="text-[11px] font-num font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+              Qazi Bazar
+            </span>
+          </div>
+          <p class="text-xs opacity-70 hidden sm:block">ڕێبەری فەرمی پاکێج و ئۆفەرەکانی ڕێکلام</p>
+        </div>
+      </div>
+
+      <!-- Center iOS 26 Capsule Status Bar -->
+      <div class="hidden md:flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/20 dark:bg-white/[0.06] border border-white/15 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-xs sm:text-sm font-bold tracking-wide">لیستی فەرمی نرخ و ئۆفەرەکان • ٢٠٢٦</span>
+      </div>
+
+      <!-- Right Actions: Jump to Comparison Table & Dark/Light Glass Theme Toggle -->
+      <div class="flex items-center gap-2.5">
+        <a href="#comparisonSection" class="btn-glass px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/15 border border-white/20 flex items-center gap-1.5">
+          <i class="ph-bold ph-table text-base text-indigo-300"></i>
+          <span class="hidden sm:inline">خشتەی بەراوردکاری</span>
+        </a>
+
+        <!-- Dark Spatial / Light Pearl Theme Toggle Button -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="btn-glass px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 flex items-center justify-center gap-2 text-xs sm:text-sm font-bold" aria-label="گۆڕینی ڕووکار">
+          <i id="themeIcon" class="ph-fill ph-moon-stars text-lg text-amber-300"></i>
+          <span id="themeLabel">شوشەیی تاریک</span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-14">
+
+    <!-- Hero Showcase Header -->
+    <section class="text-center max-w-3xl mx-auto">
+      <!-- Mobile Status Capsule -->
+      <div class="inline-flex md:hidden items-center gap-2 px-4 py-1.5 rounded-full ios-glass mb-4 text-xs font-bold">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>لیستی فەرمی نرخ و ئۆفەرەکان • ٢٠٢٦</span>
+      </div>
+
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full ios-glass mb-5 text-xs sm:text-sm font-semibold">
+        <i class="ph-fill ph-gift text-amber-400 text-base"></i>
+        <span class="text-amber-400 font-bold">دیاری تایبەت (هەدیە)</span>
+        <span class="opacity-40">|</span>
+        <span>ستۆری بێبەرامبەر لەگەڵ هەموو پاکێجێکدا هەیە 🎁</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">
+        پاکێج و ئۆفەرەکانی ڕێکلام لە
+        <span class="bg-gradient-to-l from-indigo-400 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+          قازی بازاڕ
+        </span>
+      </h2>
+
+      <p class="text-sm sm:text-lg opacity-80 leading-relaxed max-w-2xl mx-auto">
+        تەواوی زانیاری و نرخی پاکێجەکانی بڵاوکردنەوەی پۆست و ڕێکلام لە پلاتفۆرمی قازی بازاڕ؛ لە پۆستی ١٥ ڕۆژەوە تا پاکێجی شاهانەی
+        <span class="font-num font-bold text-amber-400">VVIP</span>
+        لەگەڵ سپۆنسەر، دروستکردنی ڕیڵس و ستۆری هەدیە.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 mt-8" role="tablist" aria-label="فلتەری پاکێجەکان">
+        <button onclick="filterPackages('all')" data-filter="all" class="filter-pill active px-5 py-2 rounded-full text-xs sm:text-sm font-bold ios-glass flex items-center gap-2">
+          <i class="ph-fill ph-squares-four text-base"></i>
+          <span>هەموو پاکێجەکان</span>
+        </button>
+        <button onclick="filterPackages('standard')" data-filter="standard" class="filter-pill px-5 py-2 rounded-full text-xs sm:text-sm font-bold ios-glass opacity-80 hover:opacity-100 flex items-center gap-2">
+          <i class="ph-fill ph-article text-base text-cyan-400"></i>
+          <span>پاکێجە ئاساییەکان</span>
+        </button>
+        <button onclick="filterPackages('vip-vvip')" data-filter="vip-vvip" class="filter-pill px-5 py-2 rounded-full text-xs sm:text-sm font-bold ios-glass opacity-80 hover:opacity-100 flex items-center gap-2">
+          <i class="ph-fill ph-crown text-base text-amber-400"></i>
+          <span>پاکێجە تایبەتەکان VIP &amp; VVIP</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- LIQUID GLASS PRICING & OFFERS SHOWCASE     -->
+    <!-- ========================================== -->
+    <section id="packagesShowcase" class="space-y-8">
+
+      <!-- 4-Column Grid for Standard & VIP Packages -->
+      <div id="topPackagesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+        <!-- OFFER 1: پۆستی ١٥ ڕۆژ (4,000 د.ع + ١ ستۆری هەدیە) -->
+        <article data-category="standard" class="liquid-card p-6 flex flex-col justify-between group">
+          <div class="relative z-10">
+            <!-- Header Badge & Icon -->
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/15 text-cyan-400 border border-cyan-400/30">
+                پاکێجی کورتخایەن
+              </span>
+              <div class="w-10 h-10 rounded-2xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                <i class="ph-duotone ph-clock-countdown text-xl"></i>
+              </div>
+            </div>
+
+            <!-- Package Title & Description -->
+            <h3 class="text-xl font-black mb-1.5">پۆستی ١٥ ڕۆژ</h3>
+            <p class="text-xs sm:text-sm opacity-75 leading-relaxed mb-5">
+              بڵاوکردنەوەی پۆستی ئاسایی بۆ ماوەی نیو مانگ لەگەڵ ١ ستۆری بێبەرامبەر.
+            </p>
+
+            <!-- Price Box -->
+            <div class="p-4 rounded-2xl bg-black/20 dark:bg-white/[0.04] border border-white/15 mb-5">
+              <div class="text-[11px] font-bold opacity-70 mb-1">نرخی فەرمی</div>
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-3xl sm:text-4xl font-num font-extrabold tracking-tight">4,000</span>
+                <span class="text-sm font-bold text-cyan-400">د.ع</span>
+              </div>
+              <div class="text-xs opacity-80 mt-2 flex items-center gap-1.5">
+                <i class="ph-fill ph-calendar-blank text-cyan-400"></i>
+                <span>ماوە: ١٥ ڕۆژ</span>
+              </div>
+            </div>
+
+            <!-- Gift Badge (هەدیە) -->
+            <div class="gift-pill rounded-2xl p-3.5 mb-5 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-lg gift-icon-anim">
+                  🎁
+                </span>
+                <div>
+                  <span class="block text-[11px] font-bold text-emerald-400">دیاری تایبەت (هەدیە)</span>
+                  <span class="text-sm font-extrabold">+ ١ ستۆری هەدیە</span>
+                </div>
+              </div>
+              <span class="font-num text-xs font-extrabold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                FREE
+              </span>
+            </div>
+
+            <!-- Package Details List -->
+            <ul class="space-y-2.5 text-xs sm:text-sm">
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-cyan-400 text-base shrink-0 mt-0.5"></i>
+                <span>پۆستی ئاسایی بۆ ماوەی ١٥ ڕۆژ</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-cyan-400 text-base shrink-0 mt-0.5"></i>
+                <span>دەرکەوتن لە پەڕەی سەرەکی قازی بازاڕ</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-gift text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                <span class="font-bold text-emerald-400">+ ١ ستۆری هەدیە بێبەرامبەر</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Read-Only Glass Status Footer -->
+          <div class="relative z-10 mt-6 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs opacity-75">
+            <span class="flex items-center gap-1.5 font-semibold">
+              <i class="ph-fill ph-seal-check text-cyan-400 text-base"></i>
+              <span>پاکێجی ئاسایی</span>
+            </span>
+            <span class="font-num font-bold">١٥ ڕۆژ</span>
+          </div>
+        </article>
+
+        <!-- OFFER 2: پۆستی ئاسایی ١ مانگ (6,000 د.ع + ٣ ڕۆژ لە مانگە ستۆری هەدیە) -->
+        <article data-category="standard" class="liquid-card p-6 flex flex-col justify-between group">
+          <div class="relative z-10">
+            <!-- Header Badge & Icon -->
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/15 text-blue-400 border border-blue-400/30">
+                پاکێجی مانگانە
+              </span>
+              <div class="w-10 h-10 rounded-2xl bg-blue-500/15 border border-blue-400/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                <i class="ph-duotone ph-calendar-check text-xl"></i>
+              </div>
+            </div>
+
+            <!-- Package Title & Description -->
+            <h3 class="text-xl font-black mb-1.5">پۆستی ئاسایی ١ مانگ</h3>
+            <p class="text-xs sm:text-sm opacity-75 leading-relaxed mb-5">
+              بڵاوکردنەوەی پۆستی ئاسایی بۆ ماوەی مانگێکی تەواو لەگەڵ ٣ ڕۆژ ستۆری هەدیە.
+            </p>
+
+            <!-- Price Box -->
+            <div class="p-4 rounded-2xl bg-black/20 dark:bg-white/[0.04] border border-white/15 mb-5">
+              <div class="text-[11px] font-bold opacity-70 mb-1">نرخی فەرمی</div>
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-3xl sm:text-4xl font-num font-extrabold tracking-tight">6,000</span>
+                <span class="text-sm font-bold text-blue-400">د.ع</span>
+              </div>
+              <div class="text-xs opacity-80 mt-2 flex items-center gap-1.5">
+                <i class="ph-fill ph-calendar-blank text-blue-400"></i>
+                <span>ماوە: ١ مانگ</span>
+              </div>
+            </div>
+
+            <!-- Gift Badge (هەدیە) -->
+            <div class="gift-pill rounded-2xl p-3.5 mb-5 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-lg gift-icon-anim">
+                  🎁
+                </span>
+                <div>
+                  <span class="block text-[11px] font-bold text-emerald-400">دیاری تایبەت (هەدیە)</span>
+                  <span class="text-sm font-extrabold">+ ٣ ڕۆژ لە مانگە ستۆری هەدیە</span>
+                </div>
+              </div>
+              <span class="font-num text-xs font-extrabold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                FREE
+              </span>
+            </div>
+
+            <!-- Package Details List -->
+            <ul class="space-y-2.5 text-xs sm:text-sm">
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-blue-400 text-base shrink-0 mt-0.5"></i>
+                <span>پۆستی ئاسایی بۆ ماوەی ١ مانگی تەواو</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-blue-400 text-base shrink-0 mt-0.5"></i>
+                <span>مانەوەی بەردەوام لە ناو قازی بازاڕ</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-gift text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                <span class="font-bold text-emerald-400">+ ٣ ڕۆژ لە مانگە ستۆری هەدیە</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Read-Only Glass Status Footer -->
+          <div class="relative z-10 mt-6 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs opacity-75">
+            <span class="flex items-center gap-1.5 font-semibold">
+              <i class="ph-fill ph-seal-check text-blue-400 text-base"></i>
+              <span>پاکێجی ئاسایی</span>
+            </span>
+            <span class="font-num font-bold">١ مانگ</span>
+          </div>
+        </article>
+
+        <!-- OFFER 3: پۆستی VIP بێ سپۆنسەر (9,750 د.ع + ٥ ڕۆژ ستۆری هەدیە) -->
+        <article data-category="vip-vvip" class="liquid-card p-6 flex flex-col justify-between group">
+          <div class="relative z-10">
+            <!-- Header Badge & Icon -->
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/15 text-purple-400 border border-purple-400/35">
+                پێشخراو • VIP
+              </span>
+              <div class="w-10 h-10 rounded-2xl bg-purple-500/15 border border-purple-400/35 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                <i class="ph-duotone ph-shield-star text-xl"></i>
+              </div>
+            </div>
+
+            <!-- Package Title & Description -->
+            <h3 class="text-xl font-black mb-1.5">پۆستی VIP بێ سپۆنسەر</h3>
+            <p class="text-xs sm:text-sm opacity-75 leading-relaxed mb-5">
+              پۆستی تایبەتی VIP بە دیزاین و پێشخستنی تایبەت بۆ ماوەی مانگێک بێ سپۆنسەر.
+            </p>
+
+            <!-- Price Box -->
+            <div class="p-4 rounded-2xl bg-black/20 dark:bg-white/[0.04] border border-white/15 mb-5">
+              <div class="text-[11px] font-bold opacity-70 mb-1">نرخی فەرمی</div>
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-3xl sm:text-4xl font-num font-extrabold tracking-tight">9,750</span>
+                <span class="text-sm font-bold text-purple-400">د.ع</span>
+              </div>
+              <div class="text-xs opacity-80 mt-2 flex items-center gap-1.5">
+                <i class="ph-fill ph-calendar-blank text-purple-400"></i>
+                <span>ماوە: بۆ مانگێک</span>
+              </div>
+            </div>
+
+            <!-- Gift Badge (هەدیە) -->
+            <div class="gift-pill rounded-2xl p-3.5 mb-5 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-lg gift-icon-anim">
+                  🎁
+                </span>
+                <div>
+                  <span class="block text-[11px] font-bold text-emerald-400">دیاری تایبەت (هەدیە)</span>
+                  <span class="text-sm font-extrabold">+ ٥ ڕۆژ ستۆری هەدیە</span>
+                </div>
+              </div>
+              <span class="font-num text-xs font-extrabold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                FREE
+              </span>
+            </div>
+
+            <!-- Package Details List -->
+            <ul class="space-y-2.5 text-xs sm:text-sm">
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-purple-400 text-base shrink-0 mt-0.5"></i>
+                <span>پۆستی تایبەتی VIP بۆ ماوەی مانگێک</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-purple-400 text-base shrink-0 mt-0.5"></i>
+                <span>پێشخستنی تایبەت بێ سپۆنسەر</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-gift text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                <span class="font-bold text-emerald-400">+ ٥ ڕۆژ ستۆری هەدیە بێبەرامبەر</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Read-Only Glass Status Footer -->
+          <div class="relative z-10 mt-6 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs opacity-75">
+            <span class="flex items-center gap-1.5 font-semibold text-purple-300">
+              <i class="ph-fill ph-star text-purple-400 text-base"></i>
+              <span>ئاستی VIP (بێ سپۆنسەر)</span>
+            </span>
+            <span class="font-num font-bold">١ مانگ</span>
+          </div>
+        </article>
+
+        <!-- OFFER 4: پۆستی VIP بە سپۆنسەری (24,750 د.ع + ٧ ڕۆژ ستۆری هەدیە) -->
+        <article data-category="vip-vvip" class="liquid-card card-popular p-6 flex flex-col justify-between group">
+          <!-- Popular Top Highlight Bar -->
+          <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"></div>
+
+          <div class="relative z-10">
+            <!-- Header Badge & Icon -->
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg shadow-indigo-500/30">
+                زۆرترین داواکاری 🔥
+              </span>
+              <div class="w-10 h-10 rounded-2xl bg-indigo-500/25 border border-indigo-400/40 flex items-center justify-center text-indigo-300 group-hover:scale-110 transition-transform">
+                <i class="ph-duotone ph-rocket-launch text-xl"></i>
+              </div>
+            </div>
+
+            <!-- Package Title & Description -->
+            <h3 class="text-xl font-black mb-1.5">پۆستی VIP بە سپۆنسەری</h3>
+            <p class="text-xs sm:text-sm opacity-80 leading-relaxed mb-5">
+              پۆستی VIP بۆ ماوەی مانگێک بە سپۆنسەری چالاک بۆ گەیشتن بە زۆرترین بینەر و کڕیار.
+            </p>
+
+            <!-- Price Box -->
+            <div class="p-4 rounded-2xl bg-indigo-950/40 dark:bg-indigo-500/10 border border-indigo-400/35 mb-5">
+              <div class="text-[11px] font-bold text-indigo-300 mb-1">نرخی فەرمی</div>
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-3xl sm:text-4xl font-num font-extrabold tracking-tight">24,750</span>
+                <span class="text-sm font-bold text-indigo-300">د.ع</span>
+              </div>
+              <div class="text-xs opacity-85 mt-2 flex items-center gap-1.5">
+                <i class="ph-fill ph-megaphone text-indigo-400"></i>
+                <span>ماوە: بۆ مانگێک (بە سپۆنسەری)</span>
+              </div>
+            </div>
+
+            <!-- Gift Badge (هەدیە) -->
+            <div class="gift-pill rounded-2xl p-3.5 mb-5 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-lg gift-icon-anim">
+                  🎁
+                </span>
+                <div>
+                  <span class="block text-[11px] font-bold text-emerald-400">دیاری تایبەت (هەدیە)</span>
+                  <span class="text-sm font-extrabold">+ ٧ ڕۆژ ستۆری هەدیە</span>
+                </div>
+              </div>
+              <span class="font-num text-xs font-extrabold px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                FREE
+              </span>
+            </div>
+
+            <!-- Package Details List -->
+            <ul class="space-y-2.5 text-xs sm:text-sm">
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-indigo-400 text-base shrink-0 mt-0.5"></i>
+                <span>پۆستی تایبەتی VIP بۆ مانگێک</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-check-circle text-indigo-400 text-base shrink-0 mt-0.5"></i>
+                <span>لەگەڵ سپۆنسەری چالاک (Sponsored)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="ph-fill ph-gift text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                <span class="font-bold text-emerald-400">+ ٧ ڕۆژ ستۆری هەدیە بێبەرامبەر</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Read-Only Glass Status Footer -->
+          <div class="relative z-10 mt-6 pt-3.5 border-t border-white/15 flex items-center justify-between text-xs">
+            <span class="flex items-center gap-1.5 font-bold text-indigo-300">
+              <i class="ph-fill ph-lightning text-amber-400 text-base"></i>
+              <span>VIP + سپۆنسەر</span>
+            </span>
+            <span class="font-num font-bold opacity-80">١ مانگ</span>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- OFFER 5: پاکێجی شاهانەی VVIP (59,750 د.ع + ١٣ ڕۆژ ستۆری هەدیە + سپۆنسەر + ١ مانگ پارتنەرشیپ + Reel + کۆدی داشکاندن) -->
+      <article id="vvipShowcaseCard" data-category="vip-vvip" class="liquid-card card-vvip p-6 sm:p-9 lg:p-10 relative overflow-hidden">
+        <!-- Ambient Royal Glow inside VVIP Card -->
+        <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-amber-400/20 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-purple-500/20 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Right Column (RTL): VVIP Title, Description & 6 Included Perks -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <span class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-black bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/30 flex items-center gap-1.5">
+                <i class="ph-fill ph-crown text-base"></i>
+                <span>بەهێزترین ئۆفەری قازی بازاڕ 👑</span>
+              </span>
+              <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-white/10 border border-amber-400/40 text-amber-300 font-num">
+                VVIP + Sponsor + Partnership + Reel
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl sm:text-4xl font-black tracking-tight mb-2">
+                پاکێجی شاهانەی <span class="text-shimmer-gold font-num">VVIP</span>
+              </h3>
+              <p class="text-sm sm:text-base opacity-85 leading-relaxed">
+                پۆستی <span class="font-num font-bold">VVIP</span> + سپۆنسەر + ١ مانگ پارتنەرشیپ + دروستکردن و بڵاوکردنەوەی ڤیدیۆی <span class="font-num font-bold">Reel</span> لەگەڵ ١٣ ڕۆژ ستۆری هەدیە و کۆدی داشکاندن بۆ مانگەکانی تر.
+              </p>
+            </div>
+
+            <!-- All 6 Exact Included Perks Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/[0.05] border border-white/15 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400 shrink-0">
+                  <i class="ph-fill ph-crown-simple text-xl"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-bold">پۆستی VVIP تایبەت</div>
+                  <div class="text-xs opacity-70">بەرزترین ئاستی پێشخستن و دەرکەوتن</div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/[0.05] border border-white/15 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-indigo-300 shrink-0">
+                  <i class="ph-fill ph-megaphone text-xl"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-bold">سپۆنسەری بەهێز (Sponsored Boost)</div>
+                  <div class="text-xs opacity-70">گەیشتن بە زۆرترین کڕیار و بینەر</div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/[0.05] border border-white/15 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300 shrink-0">
+                  <i class="ph-fill ph-handshake text-xl"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-bold">١ مانگ پارتنەرشیپ (1 Month Partnership)</div>
+                  <div class="text-xs opacity-70">هاوبەشی فەرمی بۆ ماوەی مانگێکی تەواو</div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/[0.05] border border-white/15 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-400/40 flex items-center justify-center text-rose-400 shrink-0">
+                  <i class="ph-fill ph-film-strip text-xl"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-bold">دروستکردن و بڵاوکردنەوەی ڤیدیۆی Reel</div>
+                  <div class="text-xs opacity-70">ڕێکلامی ڤیدیۆیی تایبەت بۆ کاڵاکانت</div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/[0.05] border border-white/15 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 shrink-0">
+                  <i class="ph-fill ph-gift text-xl"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-bold">١٣ ڕۆژ ستۆری هەدیە</div>
+                  <div class="text-xs opacity-70">ستۆری بێبەرامبەر بە درێژایی مانگەکە</div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/[0.05] border border-white/15 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shrink-0">
+                  <i class="ph-fill ph-ticket text-xl"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-bold">کۆدی داشکاندن بۆ مانگەکانی تر</div>
+                  <div class="text-xs opacity-70">داشکاندنی تایبەت بۆ نوێکردنەوەی داهاتوو</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left Column (RTL): VVIP Price Showcase & 13-Day Free Story Gift Box -->
+          <div class="lg:col-span-5">
+            <div class="ios-glass-elevated rounded-3xl p-6 sm:p-8 border border-amber-400/45 space-y-6">
+              
+              <div class="flex items-center justify-between border-b border-white/15 pb-5">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1.5">نرخی فەرمی پاکێجی شاهانە</span>
+                  <div class="flex items-baseline gap-2">
+                    <span class="text-sm sm:text-base font-bold opacity-85">تەنها</span>
+                    <span class="text-4xl sm:text-5xl font-num font-black tracking-tight text-shimmer-gold">59,750</span>
+                    <span class="text-base sm:text-lg font-bold text-amber-400">د.ع</span>
+                  </div>
+                </div>
+                <div class="text-left">
+                  <span class="inline-block px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold">
+                    ١ مانگ پارتنەرشیپ
+                  </span>
+                </div>
+              </div>
+
+              <!-- 13 Days Free Story Gift Highlight -->
+              <div class="gift-pill rounded-2xl p-4 sm:p-5 border-2 border-emerald-400/50">
+                <div class="flex items-center justify-between gap-3 mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="w-11 h-11 rounded-xl bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-2xl gift-icon-anim">
+                      🎁
+                    </span>
+                    <div>
+                      <span class="text-xs font-bold text-emerald-400 block">دیاری تایبەتی پاکێجی VVIP</span>
+                      <span class="text-base sm:text-lg font-black">+ ١٣ ڕۆژ ستۆری هەدیە</span>
+                    </div>
+                  </div>
+                  <span class="font-num text-xs sm:text-sm font-black px-3 py-1 rounded-xl bg-emerald-500 text-slate-950 shadow">
+                    13 Days
+                  </span>
+                </div>
+                <p class="text-xs sm:text-sm opacity-85 leading-relaxed mt-2">
+                  لەگەڵ وەرگرتنی کۆدی داشکاندنی تایبەت بۆ مانگەکانی تر.
+                </p>
+              </div>
+
+              <!-- Read-Only Summary Strip -->
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs opacity-80">
+                <span class="flex items-center gap-1.5 font-bold text-amber-300">
+                  <i class="ph-fill ph-sparkle text-amber-400 text-base"></i>
+                  <span>پۆستی VVIP + سپۆنسەر + Reel</span>
+                </span>
+                <span class="font-semibold">+ کۆدی داشکاندن</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SIDE-BY-SIDE GLASS COMPARISON TABLE SECTION               -->
+    <!-- ========================================================= -->
+    <section id="comparisonSection" class="pt-4">
+      <div class="liquid-card p-5 sm:p-8 lg:p-10 overflow-hidden">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7 pb-5 border-b border-white/15">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 mb-1">
+              <i class="ph-fill ph-scales text-base"></i>
+              <span>بەراوردکاری تەواو</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl lg:text-3xl font-black">بەراوردکردنی هەر ٥ پاکێجەکەی قازی بازاڕ</h3>
+            <p class="text-xs sm:text-sm opacity-75 mt-1">
+              بەراوردی وردی ماوە، سپۆنسەر، ژمارەی ڕۆژەکانی ستۆری هەدیە، ڕیڵس و نرخی هەر پاکێجێک بە دیناری عێراقی
+            </p>
+          </div>
+          <div class="self-start sm:self-center px-4 py-2 rounded-2xl bg-white/5 border border-white/15 text-xs font-bold flex items-center gap-2">
+            <i class="ph-fill ph-currency-circle-dollar text-amber-400 text-lg"></i>
+            <span>نرخەکان بە دیناری عێراقی (د.ع)</span>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto -mx-5 px-5 sm:mx-0 sm:px-0">
+          <table class="w-full min-w-[780px] text-right border-collapse">
+            <thead>
+              <tr class="border-b border-white/15 text-xs sm:text-sm">
+                <th class="py-4 px-4 font-extrabold opacity-80">تایبەتمەندی / پاکێج</th>
+                <th class="py-4 px-4 font-extrabold text-cyan-400">پۆستی ١٥ ڕۆژ</th>
+                <th class="py-4 px-4 font-extrabold text-blue-400">پۆستی ئاسایی ١ مانگ</th>
+                <th class="py-4 px-4 font-extrabold text-purple-400">پۆستی VIP بێ سپۆنسەر</th>
+                <th class="py-4 px-4 font-extrabold text-indigo-400 bg-indigo-500/10 rounded-t-2xl">پۆستی VIP بە سپۆنسەری 🔥</th>
+                <th class="py-4 px-4 font-extrabold text-amber-400 bg-amber-500/10 rounded-t-2xl">پاکێجی شاهانەی VVIP 👑</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/10 text-xs sm:text-sm">
+              <!-- Price Row -->
+              <tr class="hover:bg-white/[0.03] transition-colors">
+                <td class="py-4 px-4 font-bold">نرخی پاکێج</td>
+                <td class="py-4 px-4 font-num font-extrabold text-base">4,000 د.ع</td>
+                <td class="py-4 px-4 font-num font-extrabold text-base">6,000 د.ع</td>
+                <td class="py-4 px-4 font-num font-extrabold text-base">9,750 د.ع</td>
+                <td class="py-4 px-4 font-num font-extrabold text-base bg-indigo-500/10 text-indigo-300">24,750 د.ع</td>
+                <td class="py-4 px-4 font-num font-black text-base bg-amber-500/10 text-amber-400">تەنها 59,750 د.ع</td>
+              </tr>
+
+              <!-- Duration Row -->
+              <tr class="hover:bg-white/[0.03] transition-colors">
+                <td class="py-4 px-4 font-bold">ماوەی بڵاوکردنەوە</td>
+                <td class="py-4 px-4">١٥ ڕۆژ</td>
+                <td class="py-4 px-4">١ مانگ</td>
+                <td class="py-4 px-4">بۆ مانگێک</td>
+                <td class="py-4 px-4 bg-indigo-500/10">بۆ مانگێک</td>
+                <td class="py-4 px-4 bg-amber-500/10 font-bold">١ مانگ پارتنەرشیپ</td>
+              </tr>
+
+              <!-- Free Story Gift Days Row -->
+              <tr class="hover:bg-white/[0.03] transition-colors">
+                <td class="py-4 px-4 font-bold text-emerald-400">🎁 ستۆری هەدیە (بێبەرامبەر)</td>
+                <td class="py-4 px-4 font-bold text-emerald-400">+ ١ ستۆری هەدیە</td>
+                <td class="py-4 px-4 font-bold text-emerald-400">+ ٣ ڕۆژ لە مانگە</td>
+                <td class="py-4 px-4 font-bold text-emerald-400">+ ٥ ڕۆژ ستۆری هەدیە</td>
+                <td class="py-4 px-4 font-bold text-emerald-400 bg-indigo-500/10">+ ٧ ڕۆژ ستۆری هەدیە</td>
+                <td class="py-4 px-4 font-black text-emerald-400 bg-amber-500/10">+ ١٣ ڕۆژ ستۆری هەدیە</td>
+              </tr>
+
+              <!-- Sponsor Status Row -->
+              <tr class="hover:bg-white/[0.03] transition-colors">
+                <td class="py-4 px-4 font-bold">دۆخی سپۆنسەر (Sponsor)</td>
+                <td class="py-4 px-4 opacity-50">بێ سپۆنسەر</td>
+                <td class="py-4 px-4 opacity-50">بێ سپۆنسەر</td>
+                <td class="py-4 px-4 opacity-75">بێ سپۆنسەر</td>
+                <td class="py-4 px-4 bg-indigo-500/10 font-bold text-indigo-300">بە سپۆنسەری ✅</td>
+                <td class="py-4 px-4 bg-amber-500/10 font-bold text-amber-300">سپۆنسەری بەهێز ✅</td>
+              </tr>
+
+              <!-- Video Reel & Partnership Row -->
+              <tr class="hover:bg-white/[0.03] transition-colors">
+                <td class="py-4 px-4 font-bold">ڤیدیۆی Reel + پارتنەرشیپ</td>
+                <td class="py-4 px-4 opacity-40">—</td>
+                <td class="py-4 px-4 opacity-40">—</td>
+                <td class="py-4 px-4 opacity-40">—</td>
+                <td class="py-4 px-4 bg-indigo-500/10 opacity-40">—</td>
+                <td class="py-4 px-4 bg-amber-500/10 font-bold text-amber-400">١ مانگ پارتنەرشیپ + Reel 🎬</td>
+              </tr>
+
+              <!-- Future Months Discount Code Row -->
+              <tr class="hover:bg-white/[0.03] transition-colors">
+                <td class="py-4 px-4 font-bold">کۆدی داشکاندن بۆ مانگەکانی تر</td>
+                <td class="py-4 px-4 opacity-40">—</td>
+                <td class="py-4 px-4 opacity-40">—</td>
+                <td class="py-4 px-4 opacity-40">—</td>
+                <td class="py-4 px-4 bg-indigo-500/10 rounded-b-2xl opacity-40">—</td>
+                <td class="py-4 px-4 bg-amber-500/10 rounded-b-2xl font-bold text-emerald-400">بەڵێ (کۆدی داشکاندن) 🎟️</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimal Official Glass Footer -->
+  <footer class="max-w-7xl mx-auto px-4 sm:px-6 mt-14">
+    <div class="ios-glass rounded-3xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm opacity-80">
+      <div class="flex items-center gap-2.5">
+        <i class="ph-fill ph-storefront text-amber-400 text-lg"></i>
+        <span class="font-bold">قازی بازاڕ (Qazi Bazar)</span>
+        <span class="opacity-40">•</span>
+        <span>لیستی فەرمی نرخ و ئۆفەرەکانی ڕێکلام</span>
+      </div>
+      <div class="font-num text-xs opacity-70">
+        Qazi Bazar Official Price Showcase • 2026
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive UI Scripts (Cursor Glass Reflection, Category Filter & Theme Toggle Only) -->
+  <script>
+    // 1. Interactive Cursor-Tracking Specular Reflection on Liquid Glass Cards
+    function initLiquidCardGlow() {
+      const cards = document.querySelectorAll('.liquid-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    }
+
+    // 2. Dark Spatial / Light Pearl Glass Theme Toggle
+    function toggleTheme() {
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('themeIcon');
+      const themeLabel = document.getElementById('themeLabel');
+
+      if (htmlEl.classList.contains('light')) {
+        htmlEl.classList.remove('light');
+        htmlEl.classList.add('dark');
+        themeIcon.className = 'ph-fill ph-moon-stars text-lg text-amber-300';
+        themeLabel.textContent = 'شوشەیی تاریک';
+      } else {
+        htmlEl.classList.remove('dark');
+        htmlEl.classList.add('light');
+        themeIcon.className = 'ph-fill ph-sun-dim text-lg text-amber-500';
+        themeLabel.textContent = 'مرواری ڕووناک';
+      }
+    }
+
+    // 3. Smooth Category Filter Pills (هەموو پاکێجەکان, پاکێجە ئاساییەکان, پاکێجە تایبەتەکان VIP & VVIP)
+    function filterPackages(category) {
+      const cards = document.querySelectorAll('#packagesShowcase [data-category]');
+      const buttons = document.querySelectorAll('.filter-pill');
+
+      buttons.forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initLiquidCardGlow();
+    });
+  </script>
+</body>
+</html>
